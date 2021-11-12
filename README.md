@@ -26,7 +26,11 @@ DB_NAME=
 ```
 
 3. Cree un archivo para las variables de entorno(.env.development) y complete.
-
-## Ejecutar en modo desarrollo
-1.
-
+4. Para ejecutar en modo desarrollo
+```bash
+$ yarn dev
+```
+5. Para generar la documentación de todo el proyecto
+```bash
+$ yarn docs
+```
