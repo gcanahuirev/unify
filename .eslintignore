@@ -1,4 +1,10 @@
+# Nestjs
 *.spec.ts
 *.e2e-spec.ts
 node_modules/
 src/migrations
+
+# Smart contracts
+artifacts
+cache
+coverage

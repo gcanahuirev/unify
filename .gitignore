@@ -3,6 +3,8 @@
 /dist
 /node_modules
 ormconfig.json
+coverage.json
+typechain
 
 # Logs
 logs
@@ -59,3 +61,8 @@ lerna-debug.log*
 
 # Local History for Visual Studio Code
 /.history
+
+#Hardhat files
+cache
+artifacts
+gasReporterOutput.json

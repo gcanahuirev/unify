@@ -14,7 +14,7 @@ module.exports = {
   root: true,
   env: {
     node: true,
-    jest: true,
+    mocha: true,
   },
   ignorePatterns: ['.eslintrc.js'],
   rules: {
@@ -42,5 +42,14 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ['./hardhat.config.ts', './ethereum/**/*'] }
+    ],
+    /* "node/no-unsupported-features/es-syntax": [
+      "error",
+      { ignores: ["modules"] },
+    ], */
+
   },
 };
