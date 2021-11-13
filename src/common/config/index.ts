@@ -55,4 +55,14 @@ export const configurations = () => ({
     password: process.env.DEFAULT_USER_PASSWORD || 'password#321',
     roles: ['admin'],
   },
+  contract: {
+    nftAddress:
+      process.env.NFT_ADDRESS || '0x0000000000000000000000000000000000000000',
+    marketAddress:
+      process.env.MARKET_ADDRESS ||
+      '0x0000000000000000000000000000000000000000',
+  },
+  ipfs: {
+    url: process.env.IPFS_URL || 'http://localhost:5001',
+  },
 });
