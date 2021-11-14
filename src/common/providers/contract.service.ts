@@ -6,10 +6,8 @@ import axios from 'axios';
 import { BigNumber } from '@ethersproject/bignumber';
 import { ConfigService } from '@nestjs/config';
 import { ethers } from 'hardhat';
-import { create as ipfsHttpClient } from 'ipfs-http-client';
 
-import NFT from '../../../ethereum/artifacts/ethereum/contracts/NFT.sol/NFT.json';
-import NFTMarket from '../../../ethereum/artifacts/ethereum/contracts/Market.sol/NFTMarket.json';
+import { NFT__factory, NFTMarket__factory } from '~typechain';
 
 export class ContractService {
   abi: string;
@@ -22,13 +20,13 @@ export class ContractService {
 
   private readonly tokenContract = new ethers.Contract(
     this.configService.get<string>('contract.nftAddress'),
-    NFT.abi,
+    NFT__factory.abi,
     this.provider,
   );
 
   private readonly marketContract = new ethers.Contract(
     this.configService.get<string>('contract.marketAddress'),
-    NFTMarket.abi,
+    NFTMarket__factory.abi,
     this.provider,
   );
 
@@ -65,7 +63,7 @@ export class ContractService {
   async buyNFT(signer: any, nft: any): Promise<any> {
     const contract = new ethers.Contract(
       this.configService.get<string>('contract.marketAddress'),
-      NFTMarket.abi,
+      NFTMarket__factory.abi,
       signer,
     );
 
@@ -78,5 +76,6 @@ export class ContractService {
       },
     );
     await transaction.wait();
+    return true;
   }
 }

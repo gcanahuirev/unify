@@ -28,10 +28,11 @@
       "~decorators": ["src/common/decorators"],
       "~helpers": ["src/common/helpers"],
       "~providers": ["src/common/providers"],
-      "~scripts": ["src/scripts"]
+      "~scripts": ["src/scripts"],
+      "~typechain": ["eth/typechain"],
     }
   },
-  "include": ["src/**/*", "ethereum/scripts", "ethereum/test", "./typechain"],
-  "exclude": ["node_modules"],
+  "include": ["src/**/*", "eth/**/*"],
+  "exclude": ["node_modules", "dist"],
   "files": ["./hardhat.config.ts"]
 }

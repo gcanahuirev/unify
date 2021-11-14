@@ -6,7 +6,7 @@ const deployGreeter = async () => {
 
   await greeter.deployed();
 
-  console.log('Greeter deployed in:', greeter.address);
+  return greeter.address;
 };
 
 export default deployGreeter;

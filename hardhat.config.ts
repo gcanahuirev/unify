@@ -19,10 +19,15 @@ const config: HardhatUserConfig = {
     apiKey: process.env.ETHERSCAN_API_KEY,
   },
   paths: {
-    sources: 'ethereum/contracts',
-    tests: 'ethereum/test',
-    cache: 'ethereum/cache',
-    artifacts: 'ethereum/artifacts',
+    sources: 'eth/contracts',
+    tests: 'eth/test',
+    cache: 'eth/cache',
+    artifacts: 'eth/artifacts',
+  },
+  typechain: {
+    outDir: 'eth/typechain',
+    target: 'ethers-v5',
+    alwaysGenerateOverloads: false,
   },
   mocha: {
     slow: 150000,

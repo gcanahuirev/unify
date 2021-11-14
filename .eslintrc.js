@@ -44,7 +44,7 @@ module.exports = {
     '@typescript-eslint/restrict-template-expressions': 'off',
     "import/no-extraneous-dependencies": [
       "error",
-      { "devDependencies": ['./hardhat.config.ts', './ethereum/**/*'] }
+      { "devDependencies": ['./hardhat.config.ts', './eth/**/*'] }
     ],
     /* "node/no-unsupported-features/es-syntax": [
       "error",
