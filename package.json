@@ -25,7 +25,6 @@
   },
   "homepage": "https://github.com/gcanahuirev/unify#readme",
   "dependencies": {
-    "@ethersproject/bignumber": "^5.5.0",
     "@nestjs/common": "^8.2.0",
     "@nestjs/config": "^1.1.0",
     "@nestjs/core": "^8.2.0",
@@ -39,6 +38,7 @@
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
+    "ethers": "^5.5.1",
     "fastify-formidable": "^1.1.0",
     "fastify-helmet": "^5.3.2",
     "fastify-swagger": "^4.12.6",
@@ -81,7 +81,6 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-prettier": "^4.0.0",
-    "ethers": "^5.0.0",
     "lint-staged": "^11.2.6",
     "prettier": "^2.4.1",
     "prettier-plugin-solidity": "^1.0.0-beta.13",

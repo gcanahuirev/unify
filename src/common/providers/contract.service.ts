@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import axios from 'axios';
 
-import { BigNumber } from '@ethersproject/bignumber';
+import { BigNumber } from 'ethers';
 import { ConfigService } from '@nestjs/config';
 import { ethers } from 'hardhat';
 
