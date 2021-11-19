@@ -20,19 +20,6 @@ export const configSchema = Joi.object({
   AWS_SECRET_ACCESS_KEY: Joi.string().required(),
   AWS_S3_REGION: Joi.string().required(),
   AWS_S3_BUCKET: Joi.string().required(),
-  NETWORK: Joi.string().valid(
-    'mainnet',
-    'ropsten',
-    'rinkeby',
-    'kovan',
-    'goerli',
-    'hardhat',
-  ),
-  GOERLI_URL: Joi.string(),
-  PRIVATE_KEY: Joi.string(),
-  ETHERSCAN_API_KEY: Joi.string(),
-  NFT_ADDRESS: Joi.string(),
-  MARKET_ADDRESS: Joi.string(),
 });
 
 export const configurations = () => ({
@@ -77,15 +64,5 @@ export const configurations = () => ({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     region: process.env.AWS_S3_REGION,
     bucket: process.env.AWS_S3_BUCKET,
-  },
-  eth: {
-    network: process.env.NETWORK || 'hardhat',
-    goerliUrl: process.env.GOERLI_URL,
-    privateKey: process.env.PRIVATE_KEY,
-    etherscan: process.env.ETHERSCAN_API_KEY,
-  },
-  contract: {
-    nftAddress: process.env.NFT_ADDRESS,
-    marketAddress: process.env.MARKET_ADDRESS,
   },
 });

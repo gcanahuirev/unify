@@ -42,14 +42,5 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
-    "import/no-extraneous-dependencies": [
-      "error",
-      { "devDependencies": ['./hardhat.config.ts', './eth/**/*'] }
-    ],
-    /* "node/no-unsupported-features/es-syntax": [
-      "error",
-      { ignores: ["modules"] },
-    ], */
-
   },
 };

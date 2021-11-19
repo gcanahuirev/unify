@@ -29,10 +29,8 @@
       "~helpers": ["src/common/helpers"],
       "~providers": ["src/common/providers"],
       "~scripts": ["src/scripts"],
-      "~typechain": ["eth/typechain"],
     }
   },
-  "include": ["src/**/*", "eth/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"],
-  "files": ["./hardhat.config.ts"]
 }

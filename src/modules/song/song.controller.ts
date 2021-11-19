@@ -50,7 +50,7 @@ export class SongController {
     const { files } = req;
 
     const body = req.body as CreateSongDto;
-    const file = files.file as formidable.File;
+    const file = files.songFile as formidable.File;
 
     const data = await this.songsService.createSong(file, body, userId);
 
