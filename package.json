@@ -25,6 +25,9 @@
   },
   "homepage": "https://github.com/gcanahuirev/unify#readme",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.41.0",
+    "@aws-sdk/lib-storage": "^3.41.0",
+    "@aws-sdk/s3-request-presigner": "^3.41.0",
     "@nestjs/common": "^8.2.0",
     "@nestjs/config": "^1.1.0",
     "@nestjs/core": "^8.2.0",

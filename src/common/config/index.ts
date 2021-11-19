@@ -16,6 +16,23 @@ export const configSchema = Joi.object({
   JWT_EXPIRES_IN: Joi.string(),
   DEFAULT_USER_EMAIL: Joi.string().email(),
   DEFAULT_USER_PASSWORD: Joi.string().min(8).max(128),
+  AWS_ACCESS_KEY: Joi.string().required(),
+  AWS_SECRET_ACCESS_KEY: Joi.string().required(),
+  AWS_S3_REGION: Joi.string().required(),
+  AWS_S3_BUCKET: Joi.string().required(),
+  NETWORK: Joi.string().valid(
+    'mainnet',
+    'ropsten',
+    'rinkeby',
+    'kovan',
+    'goerli',
+    'hardhat',
+  ),
+  GOERLI_URL: Joi.string(),
+  PRIVATE_KEY: Joi.string(),
+  ETHERSCAN_API_KEY: Joi.string(),
+  NFT_ADDRESS: Joi.string(),
+  MARKET_ADDRESS: Joi.string(),
 });
 
 export const configurations = () => ({
@@ -55,14 +72,20 @@ export const configurations = () => ({
     password: process.env.DEFAULT_USER_PASSWORD || 'password#321',
     roles: ['admin'],
   },
-  contract: {
-    nftAddress:
-      process.env.NFT_ADDRESS || '0x0000000000000000000000000000000000000000',
-    marketAddress:
-      process.env.MARKET_ADDRESS ||
-      '0x0000000000000000000000000000000000000000',
+  s3: {
+    accessKey: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: process.env.AWS_S3_REGION,
+    bucket: process.env.AWS_S3_BUCKET,
   },
-  ipfs: {
-    url: process.env.IPFS_URL || 'http://localhost:5001',
+  eth: {
+    network: process.env.NETWORK || 'hardhat',
+    goerliUrl: process.env.GOERLI_URL,
+    privateKey: process.env.PRIVATE_KEY,
+    etherscan: process.env.ETHERSCAN_API_KEY,
+  },
+  contract: {
+    nftAddress: process.env.NFT_ADDRESS,
+    marketAddress: process.env.MARKET_ADDRESS,
   },
 });

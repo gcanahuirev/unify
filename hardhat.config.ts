@@ -6,7 +6,7 @@ import '@typechain/hardhat';
 import { HardhatUserConfig } from 'hardhat/config';
 
 const config: HardhatUserConfig = {
-  defaultNetwork: 'hardhat',
+  defaultNetwork: process.env.NETWORK || 'hardhat',
   solidity: '0.8.4',
   networks: {
     goerli: {
