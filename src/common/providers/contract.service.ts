@@ -40,7 +40,7 @@ export class ContractService {
       owner: string;
     }
 
-    const items = await Promise.all(
+    const items: any = await Promise.all(
       data.map(async (i: NewType) => {
         const tokenUri = await this.tokenContract.tokenURI(i.tokenId);
         const meta = await axios.get(tokenUri);
@@ -57,6 +57,7 @@ export class ContractService {
         return item;
       }),
     );
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return items;
   }
 

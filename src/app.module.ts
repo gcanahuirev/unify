@@ -9,6 +9,7 @@ import { configSchema, configurations } from '~config';
 import { roles } from '~m/auth/app.roles';
 
 import { AuthModule } from '~m/auth/auth.module';
+import { SongModule } from '~m/song/song.module';
 import { UserModule } from '~m/user/user.module';
 
 @Module({
@@ -27,6 +28,7 @@ import { UserModule } from '~m/user/user.module';
     AccessControlModule.forRoles(roles),
     AuthModule,
     UserModule,
+    SongModule,
   ],
   controllers: [],
   providers: [],
