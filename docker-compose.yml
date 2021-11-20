@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  unify-pg:
+    container_name: unify_pg
+    image: postgres:13.1-alpine
+    restart: unless-stopped
+    env_file:
+      - ${PWD}/.env.production
+    volumes:
+      - ${PWD}/pgdata:/var/lib/postgresql/data
+    ports:
+      - '5433:5432'
+    networks:
+      - unify-net
+
+  unify-api:
+    container_name: unify_api
+    depends_on:
+      - unify_pg
+    image: unify/api:v${VERSION}
+    restart: unless-stopped
+    env_file:
+      - ${PWD}/.env.production
+    ports:
+      - '3002:3000'
+    networks:
+      - unify-net
+
+networks:
+  unify-net:

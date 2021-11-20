@@ -1,0 +1,45 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Linters
+.eslintcache
+.eslinignore
+.eslintrc.js
+.prettierrc
+.editorconfig
+
+# Git
+.github
+.git
+.gitignore
+
+# dotenv environment variables file
+.env
+.env.example
+.env.test
+.env.development
+.env.production
+
+# Generate output
+dist/
+documentation/
+
+# Docker
+.dockerignore
+docker-compose.yml
+Dockerfile
+
+# Files Optional
+package-lock.json
+.vscode/
+test/
+README.md
+Taskfile.yml
