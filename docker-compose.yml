@@ -17,7 +17,7 @@ services:
   unify-api:
     container_name: unify_api
     depends_on:
-      - unify_pg
+      - unify-pg
     image: unify/api:v${VERSION}
     restart: unless-stopped
     env_file:
