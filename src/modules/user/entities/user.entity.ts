@@ -25,8 +25,12 @@ export class User {
   @Column({ type: 'varchar', length: 128, nullable: false, select: false })
   password: string;
 
-  @Column({ type: 'simple-array' })
-  roles: Array<string>;
+  @Column({
+    type: 'enum',
+    enum: ['admin', 'user', 'artist'],
+    default: 'user',
+  })
+  roles: string;
 
   @Column({ name: 'is_active', type: 'bool', default: true })
   isActive: boolean;

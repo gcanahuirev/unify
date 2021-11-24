@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
+import { DeepPartial, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 
 import { CreateUserDto, UpdateUserDto } from '~m/user/dto';
 import { User } from '~m/user/entities';
@@ -28,12 +28,13 @@ export class UserService {
       .getOne();
   }
 
-  async create(dto: CreateUserDto): Promise<User> {
+  async create(dto: DeepPartial<CreateUserDto>, roles: string): Promise<User> {
     const userExist = await this.userRepository.findOne({ email: dto.email });
     if (userExist)
       throw new BadRequestException('User already registered with email');
 
-    const newUser = this.userRepository.create(dto);
+    const data = Object.assign(dto, { roles });
+    const newUser = this.userRepository.create(data);
     const user = await this.userRepository.save(newUser);
 
     delete user.password;

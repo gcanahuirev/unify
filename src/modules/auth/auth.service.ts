@@ -1,7 +1,9 @@
 import { compare } from 'bcrypt';
+
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
+import { RegisterDto } from '~/modules/auth/dto';
 import { User } from '~m/user/entities';
 import { UserService } from '~m/user/user.service';
 
@@ -29,5 +31,10 @@ export class AuthService {
       user,
       access_token: this.jwtService.sign(payload),
     };
+  }
+
+  async register(dto: RegisterDto, role: string): Promise<User> {
+    const newUser = await this.userService.create(dto, role);
+    return newUser;
   }
 }

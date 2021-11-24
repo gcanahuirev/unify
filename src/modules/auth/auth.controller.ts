@@ -1,9 +1,11 @@
-import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
-import { Controller, Post, UseGuards } from '@nestjs/common';
+import { ApiBody, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Post, Query, UseGuards } from '@nestjs/common';
 
-import { JwtAuthGuard, LocalAuthGuard } from '~m/auth/guards';
 import { AuthService } from '~m/auth/auth.service';
-import { LoginDto } from '~/modules/auth/dto';
+import { LocalAuthGuard } from '~m/auth/guards';
+
+import { LoginDto, RegisterDto } from '~/modules/auth/dto';
+import { Rol } from '~m/auth/app.roles';
 import { User } from '~decorators';
 import { User as UserEntity } from '~m/user/entities';
 
@@ -20,10 +22,16 @@ export class AuthController {
     return { message: 'Login Successful', data };
   }
 
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
   @Post('register')
-  register() {
-    return { message: 'Registration Successful' };
+  @ApiQuery({ name: 'roles', enum: Rol })
+  async register(
+    @Body() dto: RegisterDto,
+    @Query('roles') roles: Rol = Rol.USER,
+  ) {
+    const data = await this.authService.register(dto, roles);
+    return {
+      message: 'Registration Successful',
+      data,
+    };
   }
 }

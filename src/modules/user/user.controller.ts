@@ -7,15 +7,16 @@ import {
   ParseIntPipe,
   Patch,
   Post,
-  UnauthorizedException,
+  Query,
 } from '@nestjs/common';
 import { InjectRolesBuilder, RolesBuilder } from 'nest-access-control';
-import { ApiTags } from '@nestjs/swagger';
 
-import { Auth, User } from '~decorators';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { Auth } from '~decorators';
+
 import { CreateUserDto, UpdateUserDto } from '~/modules/user/dto';
-import { Resource } from '~m/auth/app.roles';
-import { User as UserEntity } from '~m/user/entities';
+import { Resource, Rol } from '~m/auth/app.roles';
+
 import { UserService } from '~m/user/user.service';
 
 @ApiTags('Users routes')
@@ -53,8 +54,12 @@ export class UserController {
     resource: Resource.USER,
   })
   @Post()
-  async create(@Body() dto: CreateUserDto) {
-    const data = await this.userService.create(dto);
+  @ApiQuery({ name: 'roles', enum: Rol })
+  async create(
+    @Body() dto: CreateUserDto,
+    @Query('roles') roles: Rol = Rol.USER,
+  ) {
+    const data = await this.userService.create(dto, roles);
     return {
       message: 'User has been successfully created',
       data,
@@ -70,30 +75,8 @@ export class UserController {
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateUserDto,
-    @User() user: UserEntity,
   ) {
-    let data: UserEntity;
-    if (this.rolesBuilder.can(user.roles).updateAny(Resource.USER).granted) {
-      // Is Admin
-      data = await this.userService.update(id, dto);
-    } else {
-      // Is not Admin
-      // eslint-disable-next-line no-lonely-if
-      if (user.id === id) {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { roles, ...rest } = dto;
-        data = await this.userService.update(id, rest);
-      } else {
-        throw new UnauthorizedException(
-          'You are not allowed to update this user',
-        );
-      }
-    }
-
-    return {
-      message: `User with ID ${id} has been successfully updated`,
-      data,
-    };
+    return this.userService.update(id, dto);
   }
 
   @Auth()

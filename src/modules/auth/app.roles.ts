@@ -4,9 +4,9 @@ import { RolesBuilder } from 'nest-access-control';
 export const roles: RolesBuilder = new RolesBuilder();
 
 export enum Rol {
-  ADMIN = 'admin',
   USER = 'user',
   ARTIST = 'artist',
+  ADMIN = 'admin',
 }
 
 export enum Resource {
