@@ -98,4 +98,15 @@ export class SongController {
       data,
     };
   }
+
+  @Post('file')
+  @ApiQuery({ name: 'key', type: 'string', required: true })
+  async getFile(@Query('key') key: string) {
+    const data = await this.songsService.getFile(key);
+
+    return {
+      message: 'File found successfully',
+      data,
+    };
+  }
 }

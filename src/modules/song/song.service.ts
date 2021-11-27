@@ -78,4 +78,9 @@ export class SongService {
     if (!song) throw new NotFoundException('Song not found');
     return this.songRepository.remove(song);
   }
+
+  async getFile(key: string): Promise<any> {
+    const data = await this.s3SongService.getUrl(key);
+    return data;
+  }
 }
